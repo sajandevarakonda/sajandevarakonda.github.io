@@ -1,1 +1,1436 @@
-Hi, this is Sajan Devarakonda
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jane Doe | Senior Software Engineer</title>
+  <style>
+    /* CSS Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #0a192f;
+      --secondary: #112240;
+      --accent: #64ffda;
+      --text-primary: #ccd6f6;
+      --text-secondary: #8892b0;
+      --white: #e6f1ff;
+      --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, 
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+      --border-radius: 4px;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    a:hover {
+      color: var(--white);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.75rem; }
+    h4 { font-size: 1.5rem; }
+    h5 { font-size: 1.25rem; }
+    h6 { font-size: 1rem; }
+    
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+    
+    section {
+      padding: 5rem 0;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    .section-title {
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin: 1rem 0 3rem;
+      width: 100%;
+    }
+    
+    .section-title h2 {
+      margin: 0;
+      font-size: clamp(26px, 5vw, 32px);
+      white-space: nowrap;
+    }
+    
+    .section-title h2::before {
+      counter-increment: section;
+      content: "0" counter(section) ".";
+      margin-right: 10px;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: clamp(16px, 3vw, 20px);
+      font-weight: 400;
+    }
+    
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 300px;
+      height: 1px;
+      margin-left: 20px;
+      background-color: var(--secondary);
+    }
+    
+    body {
+      counter-reset: section;
+    }
+    
+    /* Header & Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(10, 25, 47, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    header.scrolled {
+      box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+      height: 60px;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 2rem;
+    }
+    
+    .logo {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    
+    .nav-links a::before {
+      counter-increment: nav;
+      content: "0" counter(nav) ".";
+      margin-right: 5px;
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+    
+    .nav-links {
+      counter-reset: nav;
+    }
+    
+    .resume-button {
+      padding: 0.75rem 1rem;
+      background-color: transparent;
+      border: 1px solid var(--accent);
+      border-radius: var(--border-radius);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      line-height: 1;
+      text-decoration: none;
+      transition: var(--transition);
+      margin-left: 1rem;
+    }
+    
+    .resume-button:hover {
+      background-color: rgba(100, 255, 218, 0.1);
+      color: var(--accent);
+    }
+    
+    .burger {
+      display: none;
+      cursor: pointer;
+    }
+    
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: var(--accent);
+      margin: 5px;
+      transition: var(--transition);
+    }
+    
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 0;
+    }
+    
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .hero-intro {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: clamp(14px, 5vw, 16px);
+      margin-bottom: 1rem;
+    }
+    
+    .hero-name {
+      font-size: clamp(40px, 8vw, 80px);
+      line-height: 1.1;
+      margin: 0;
+    }
+    
+    .hero-tagline {
+      font-size: clamp(40px, 8vw, 80px);
+      line-height: 1.1;
+      color: var(--text-secondary);
+      margin: 0 0 1rem;
+    }
+    
+    .hero-description {
+      margin: 1.5rem 0 2rem;
+      max-width: 540px;
+      font-size: 1.1rem;
+    }
+    
+    .profile-photo-container {
+      position: relative;
+      max-width: 300px;
+      margin: 3rem auto;
+    }
+    
+    .profile-photo-wrapper {
+      position: relative;
+      display: block;
+      width: 100%;
+      border-radius: var(--border-radius);
+      background-color: var(--accent);
+    }
+    
+    .profile-photo-wrapper::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--border-radius);
+      border: 2px solid var(--accent);
+      top: 1rem;
+      left: 1rem;
+      z-index: -1;
+      transition: var(--transition);
+    }
+    
+    .profile-photo-wrapper:hover::after {
+      top: 0.5rem;
+      left: 0.5rem;
+    }
+    
+    .profile-photo {
+      position: relative;
+      border-radius: var(--border-radius);
+      mix-blend-mode: multiply;
+      filter: grayscale(100%) contrast(1);
+      width: 100%;
+      transition: var(--transition);
+    }
+    
+    .profile-photo-wrapper:hover .profile-photo {
+      filter: none;
+      mix-blend-mode: normal;
+    }
+    
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 3rem;
+    }
+    
+    .about-text p {
+      margin-bottom: 1rem;
+    }
+    
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(140px, 200px));
+      gap: 0 1rem;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      overflow: hidden;
+      list-style: none;
+    }
+    
+    .skills-list li {
+      position: relative;
+      margin-bottom: 0.75rem;
+      padding-left: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+    
+    .skills-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      position: relative;
+    }
+    
+    .project-card {
+      position: relative;
+      background-color: var(--secondary);
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      overflow: hidden;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+    }
+    
+    .project-img-container {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .project-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .project-card:hover .project-img {
+      transform: scale(1.05);
+    }
+    
+    .project-content {
+      padding: 1.5rem;
+    }
+    
+    .project-title {
+      font-size: 1.25rem;
+      margin: 0 0 1rem;
+    }
+    
+    .project-description {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .project-tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 1rem 0 0;
+      padding: 0;
+    }
+    
+    .project-tech-list li {
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    
+    .project-links {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+    }
+    
+    .project-links a {
+      margin-right: 1rem;
+    }
+    
+    /* Skills Section */
+    .skills-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .skills-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem;
+      width: 100%;
+    }
+    
+    .skill-category {
+      text-align: center;
+    }
+    
+    .skill-category h3 {
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+    
+    .skills-container .skill-item {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--secondary);
+      border-radius: 30px;
+      font-size: 0.9rem;
+    }
+    
+    /* Blog Section */
+    .blog-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .blog-card {
+      background-color: var(--secondary);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+    }
+    
+    .blog-content {
+      padding: 1.5rem;
+    }
+    
+    .blog-date {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    
+    .blog-title {
+      font-size: 1.25rem;
+      margin: 0 0 1rem;
+    }
+    
+    .blog-excerpt {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .blog-link {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+    
+    /* Testimonials Section */
+    .testimonials {
+      position: relative;
+    }
+    
+    .testimonial-slider {
+      overflow: hidden;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .testimonial-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    
+    .testimonial-slide {
+      flex: 0 0 100%;
+      padding: 0 1rem;
+    }
+    
+    .testimonial-card {
+      background-color: var(--secondary);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -1rem;
+      left: 1rem;
+      font-size: 5rem;
+      color: var(--accent);
+      opacity: 0.2;
+      font-family: Georgia, serif;
+    }
+    
+    .testimonial-quote {
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+    
+    .author-info h4 {
+      margin: 0;
+      font-size: 1rem;
+    }
+    
+    .author-info p {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+    
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    
+    .testimonial-nav button {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .testimonial-nav button:hover {
+      color: var(--accent);
+    }
+    
+    /* Contact Section */
+    .contact {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .contact-title {
+      font-size: clamp(40px, 5vw, 60px);
+    }
+    
+    .contact p {
+      margin: 2rem auto;
+      max-width: 500px;
+    }
+    
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .form-group {
+      position: relative;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background-color: var(--secondary);
+      border: 1px solid var(--secondary);
+      border-radius: var(--border-radius);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background-color: rgba(17, 34, 64, 0.8);
+    }
+    
+    .form-group label {
+      position: absolute;
+      top: 0.8rem;
+      left: 1rem;
+      pointer-events: none;
+      transition: var(--transition);
+      color: var(--text-secondary);
+    }
+    
+    .form-group input:focus ~ label,
+    .form-group textarea:focus ~ label,
+    .form-group input:not(:placeholder-shown) ~ label,
+    .form-group textarea:not(:placeholder-shown) ~ label {
+      top: -0.7rem;
+      left: 0.8rem;
+      font-size: 0.8rem;
+      padding: 0 0.5rem;
+      background-color: var(--primary);
+      color: var(--accent);
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      padding: 1rem 1.5rem;
+      background-color: transparent;
+      border: 1px solid var(--accent);
+      border-radius: var(--border-radius);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+    
+    .submit-btn:hover {
+      background-color: rgba(100, 255, 218, 0.1);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+    
+    .social-links a {
+      margin: 0 1rem;
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+    
+    /* Footer */
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links a {
+      margin: 0 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+    
+    .footer-credit {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+    
+    .footer-credit a {
+      color: var(--accent);
+    }
+    
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 75%;
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--secondary);
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in-out;
+        z-index: 99;
+      }
+      
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      
+      .nav-links a {
+        margin: 1rem 0;
+        font-size: 1.2rem;
+      }
+      
+      .burger {
+        display: block;
+        z-index: 100;
+      }
+      
+      .burger.active div:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+      
+      .burger.active div:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .burger.active div:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .project-card {
+        min-height: 350px;
+      }
+      
+      .section-title::after {
+        width: 100px;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      section {
+        padding: 4rem 0;
+      }
+      
+      .hero-name, .hero-tagline {
+        font-size: clamp(30px, 8vw, 50px);
+      }
+      
+      .skills-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Animation Styles */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Fixed Side Elements */
+    .side-element {
+      position: fixed;
+      bottom: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-secondary);
+    }
+
+    .side-element::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 90px;
+      background-color: var(--text-secondary);
+      margin-top: 1rem;
+    }
+
+    .left-side {
+      left: 40px;
+    }
+
+    .right-side {
+      right: 40px;
+    }
+
+    .social-side-links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .social-side-links a {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .social-side-links a:hover {
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .email-link {
+      writing-mode: vertical-rl;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      margin: 1rem 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .side-element {
+        display: none;
+      }
+    }
+
+    /* Background Grid (subtle effect) */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: 50px 50px;
+      background-image: 
+        linear-gradient(to right, rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(100, 255, 218, 0.03) 1px, transparent 1px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in {
+        transition: none;
+      }
+      
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  
+  <!-- Side Elements -->
+  <div class="side-element left-side">
+    <div class="social-side-links">
+      <a href="https://github.com/" aria-label="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+      </a>
+      <a href="https://linkedin.com/" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+      </a>
+      <a href="https://twitter.com/" aria-label="Twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+      </a>
+    </div>
+  </div>
+  
+  <div class="side-element right-side">
+    <a href="mailto:hello@example.com" class="email-link">hello@example.com</a>
+  </div>
+  
+  <!-- Header -->
+  <header id="header">
+    <div class="header-container">
+      <a href="#" class="logo">JD</a>
+      <nav>
+        <div class="nav-links" id="nav-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#blog">Blog</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+          <a href="#" class="resume-button">Resume</a>
+        </div>
+        <div class="burger" id="burger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <h1 class="hero-intro">Hi, my name is</h1>
+        <h2 class="hero-name">Jane Doe.</h2>
+        <h3 class="hero-tagline">I build things for the web.</h3>
+        <p class="hero-description">
+          I'm a senior software engineer specializing in building exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products at <a href="#">ABC Company</a>.
+        </p>
+        <div class="profile-photo-container">
+          <div class="profile-photo-wrapper">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80" alt="Jane Doe" class="profile-photo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section id="about" class="fade-in">
+    <div class="container">
+      <div class="section-title">
+        <h2>About Me</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Hello! I'm Jane, a senior software engineer with over 8 years of experience in building high-quality web applications and services. My journey in coding began back in college when I created my first website, and I've been hooked ever since.
+          </p>
+          <p>
+            After graduating with a Master's in Computer Science from Stanford University in 2015, I joined a fast-growing startup where I cut my teeth on real-world projects. Since then, I've had the privilege of working at a large tech corporation, a digital agency, and most recently, as the lead engineer at a health-tech company.
+          </p>
+          <p>
+            My focus these days is on creating scalable, maintainable, and accessible web applications that provide exceptional user experiences. I'm passionate about clean code, thoughtful architecture, and leveraging technology to solve real-world problems.
+          </p>
+          <p>
+            When I'm not at my computer, you can find me hiking with my dog, experimenting with new cooking recipes, or volunteering as a coding mentor for underrepresented youth in tech.
+          </p>
+          <p>
+            Here are a few technologies I've been working with recently:
+          </p>
+          <ul class="skills-list">
+            <li>JavaScript (ES6+)</li>
+            <li>TypeScript</li>
+            <li>React</li>
+            <li>Node.js</li>
+            <li>GraphQL</li>
+            <li>AWS</li>
+            <li>Docker</li>
+            <li>MongoDB</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Projects Section -->
+  <section id="projects" class="fade-in">
+    <div class="container">
+      <div class="section-title">
+        <h2>Some Things I've Built</h2>
+      </div>
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-img-container">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Project 1" class="project-img">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Health Monitoring Platform</h3>
+            <p class="project-description">
+              A full-stack application for patients to monitor health metrics and share data with healthcare providers. Features real-time data visualization and secure communication.
+            </p>
+            <ul class="project-tech-list">
+              <li>React</li>
+              <li>Node.js</li>
+              <li>GraphQL</li>
+              <li>MongoDB</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" aria-label="GitHub Repository">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="#" aria-label="Live Demo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-img-container">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Project 2" class="project-img">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">E-commerce Platform</h3>
+            <p class="project-description">
+              A modern e-commerce solution with advanced product filtering, user authentication, payment processing, and order management system.
+            </p>
+            <ul class="project-tech-list">
+              <li>Next.js</li>
+              <li>Stripe API</li>
+              <li>PostgreSQL</li>
+              <li>AWS</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" aria-label="GitHub Repository">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="#" aria-label="Live Demo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-img-container">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Project 3" class="project-img">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Task Management App</h3>
+            <p class="project-description">
+              A collaborative task management tool with drag-and-drop interfaces, real-time updates, and team collaboration features.
+            </p>
+            <ul class="project-tech-list">
+              <li>Vue.js</li>
+              <li>Firebase</li>
+              <li>Tailwind CSS</li>
+              <li>WebSockets</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" aria-label="GitHub Repository">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="#" aria-label="Live Demo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Skills Section -->
+  <section id="skills" class="fade-in">
+    <div class="container">
+      <div class="section-title">
+        <h2>Skills & Technologies</h2>
+      </div>
+      <div class="skills-container">
+        <div class="skills-categories">
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <div>
+              <span class="skill-item">JavaScript</span>
+              <span class="skill-item">TypeScript</span>
+              <span class="skill-item">React</span>
+              <span class="skill-item">Vue.js</span>
+              <span class="skill-item">Angular</span>
+              <span class="skill-item">HTML5</span>
+              <span class="skill-item">CSS3/SASS</span>
+              <span class="skill-item">Redux</span>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h3>Backend</h3>
+            <div>
+              <span class="skill-item">Node.js</span>
+              <span class="skill-item">Express</span>
+              <span class="skill-item">Python</span>
+              <span class="skill-item">Django</span>
+              <span class="skill-item">Ruby on Rails</span>
+              <span class="skill-item">GraphQL</span>
+              <span class="skill-item">REST APIs</span>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h3>Databases</h3>
+            <div>
+              <span class="skill-item">MongoDB</span>
+              <span class="skill-item">PostgreSQL</span>
+              <span class="skill-item">MySQL</span>
+              <span class="skill-item">Redis</span>
+              <span class="skill-item">Firebase</span>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h3>DevOps & Tools</h3>
+            <div>
+              <span class="skill-item">AWS</span>
+              <span class="skill-item">Docker</span>
+              <span class="skill-item">CI/CD</span>
+              <span class="skill-item">Git</span>
+              <span class="skill-item">Webpack</span>
+              <span class="skill-item">Jest</span>
+              <span class="skill-item">Cypress</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Blog Section -->
+  <section id="blog" class="fade-in">
+    <div class="container">
+      <div class="section-title">
+        <h2>Blog & Articles</h2>
+      </div>
+      <div class="blog-preview">
+        <!-- Blog Post 1 -->
+        <div class="blog-card">
+          <div class="blog-content">
+            <p class="blog-date">January 15, 2023</p>
+            <h3 class="blog-title">Optimizing React Performance: Advanced Techniques</h3>
+            <p class="blog-excerpt">
+              Learn how to use React.memo, useMemo, and useCallback effectively to optimize your React applications for better performance...
+            </p>
+            <a href="#" class="blog-link">Read More →</a>
+          </div>
+        </div>
+        
+        <!-- Blog Post 2 -->
+        <div class="blog-card">
+          <div class="blog-content">
+            <p class="blog-date">March 22, 2023</p>
+            <h3 class="blog-title">Building Accessible Web Applications</h3>
+            <p class="blog-excerpt">
+              A comprehensive guide to making your web applications more accessible, focusing on semantic HTML, ARIA roles, and keyboard navigation...
+            </p>
+            <a href="#" class="blog-link">Read More →</a>
+          </div>
+        </div>
+        
+        <!-- Blog Post 3 -->
+        <div class="blog-card">
+          <div class="blog-content">
+            <p class="blog-date">May 5, 2023</p>
+            <h3 class="blog-title">GraphQL vs REST: When to Use Each</h3>
+            <p class="blog-excerpt">
+              Comparing GraphQL and REST API architectures, and providing guidance on when to choose one over the other for your next project...
+            </p>
+            <a href="#" class="blog-link">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="fade-in">
+    <div class="container">
+      <div class="section-title">
+        <h2>Testimonials</h2>
+      </div>
+      <div class="testimonials">
+        <div class="testimonial-slider">
+          <div class="testimonial-track" id="testimonial-track">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "Jane is an exceptional engineer who consistently delivers high-quality code. Her attention to detail and problem-solving skills helped our team overcome several complex challenges. Her work on our authentication system was particularly impressive and has become a cornerstone of our platform."
+                </p>
+                <div class="testimonial-author">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" alt="David Chen" class="author-avatar">
+                  <div class="author-info">
+                    <h4>David Chen</h4>
+                    <p>CTO, Health Technologies Inc.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "Working with Jane was a game-changer for our startup. She not only delivered a robust web application but also took the time to mentor junior developers on best practices. Her technical expertise and leadership skills made her an invaluable asset to our team."
+                </p>
+                <div class="testimonial-author">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" alt="Sarah Johnson" class="author-avatar">
+                  <div class="author-info">
+                    <h4>Sarah Johnson</h4>
+                    <p>Product Manager, TechStart</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "Jane's depth of knowledge in both frontend and backend technologies is remarkable. She quickly identified and resolved performance bottlenecks in our application, resulting in a 40% improvement in page load times. Her commitment to quality and user experience sets her apart."
+                </p>
+                <div class="testimonial-author">
+                  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" alt="Michael Thompson" class="author-avatar">
+                  <div class="author-info">
+                    <h4>Michael Thompson</h4>
+                    <p>Lead Developer, Enterprise Solutions</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-nav">
+          <button id="prev-testimonial">&larr;</button>
+          <button id="next-testimonial">&rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="fade-in">
+    <div class="container">
+      <div class="section-title">
+        <h2>Get In Touch</h2>
+      </div>
+      <div class="contact">
+        <h2 class="contact-title">Let's Work Together</h2>
+        <p>
+          I'm currently looking for new opportunities to work on challenging and innovative projects. Whether you have a question, a project proposal, or just want to say hello, my inbox is always open!
+        </p>
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <input type="text" id="name" name="name" placeholder=" " required>
+            <label for="name">Your Name</label>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder=" " required>
+            <label for="email">Your Email</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="subject" name="subject" placeholder=" " required>
+            <label for="subject">Subject</label>
+          </div>
+          <div class="form-group">
+            <textarea id="message" name="message" placeholder=" " required></textarea>
+            <label for="message">Your Message</label>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+        <div class="social-links">
+          <a href="https://github.com/" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </a>
+          <a href="https://linkedin.com/" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="https://twitter.com/" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <p class="footer-credit">
+        Designed & Built by Jane Doe &copy; <span id="current-year">2023</span>
+      </p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script>
+    // Mobile Navigation
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('nav-links');
+    
+    burger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      burger.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a navigation link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        burger.classList.remove('active');
+      });
+    });
+    
+    // Scroll Animation
+    const header = document.getElementById('header');
+    const sections = document.querySelectorAll('.fade-in');
+    
+    window.addEventListener('scroll', () => {
+      // Header scroll effect
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      
+      // Fade in sections on scroll
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const sectionHeight = section.offsetHeight;
+        const windowHeight = window.innerHeight;
+        
+        if (sectionTop < windowHeight - sectionHeight / 5) {
+          section.classList.add('visible');
+        }
+      });
+    });
+    
+    // Initialize animations
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelector('.hero .fade-in').classList.add('visible');
+      }, 300);
+    });
+    
+    // Testimonial Slider
+    const track = document.getElementById('testimonial-track');
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const next = document.getElementById('next-testimonial');
+    const prev = document.getElementById('prev-testimonial');
+    let currentIndex = 0;
+    
+    if (track && slides.length) {
+      function updateSlider() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+      
+      next.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+      });
+      
+      prev.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlider();
+      });
+      
+      // Auto-advance testimonials
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+      }, 6000);
+    }
+    
+    // Contact Form Submission
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(contactForm);
+        const formProps = Object.fromEntries(formData);
+        
+        console.log('Form submitted:', formProps);
+        
+        // Simulate form submission feedback
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+          submitBtn.textContent = 'Message Sent!';
+          contactForm.reset();
+          
+          setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }, 3000);
+        }, 2000);
+      });
+    }
+    
+    // Update copyright year
+    document.getElementById('current-year').innerText = new Date().getFullYear();
+  </script>
+</body>
+</html>
